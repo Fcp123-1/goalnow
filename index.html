@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoalNow | El fútbol, ahora</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0d0f;
+      color: white;
+    }
+
+    header {
+      background: #101316;
+      border-bottom: 1px solid #24282c;
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #b7ff00;
+    }
+
+    nav a {
+      color: #cfd3d6;
+      text-decoration: none;
+      margin-left: 22px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #b7ff00;
+    }
+
+    .hero {
+      min-height: 500px;
+      padding: 80px 7%;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 80% 30%, #263000 0%, transparent 35%),
+        linear-gradient(135deg, #111519, #080909);
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .tag {
+      display: inline-block;
+      color: #b7ff00;
+      border: 1px solid #b7ff00;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.95;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: #b7ff00;
+    }
+
+    .hero p {
+      color: #aeb4b8;
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 30px;
+      background: #b7ff00;
+      color: #0b0d0f;
+      padding: 13px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    section {
+      padding: 60px 7%;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+      font-size: 28px;
+    }
+
+    .section-title span {
+      color: #b7ff00;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: #15191c;
+      border: 1px solid #24292d;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #b7ff00;
+    }
+
+    .card-image {
+      height: 160px;
+      background:
+        linear-gradient(135deg, #1d2428, #303800);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .category {
+      color: #b7ff00;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 10px 0;
+      font-size: 19px;
+      line-height: 1.25;
+    }
+
+    .card p {
+      color: #92999e;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .matches {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .match {
+      background: #15191c;
+      border: 1px solid #24292d;
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .match .competition {
+      color: #b7ff00;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .teams {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    .time {
+      color: #92999e;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #070809;
+      border-top: 1px solid #24282c;
+      padding: 35px 7%;
+      text-align: center;
+      color: #70777c;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 800px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0;
+      }
+
+      .news-grid,
+      .matches {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 450px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">Goal<span>Now</span></div>
+
+    <nav>
+      <a href="#">Noticias</a>
+      <a href="#">Partidos</a>
+      <a href="#">Competiciones</a>
+      <a href="#">Clasificaciones</a>
+      <a href="#">Jugadores</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="tag">⚽ ACTUALIDAD DEL FÚTBOL</div>
+
+        <h1>
+          El fútbol,<br>
+          <span>ahora.</span>
+        </h1>
+
+        <p>
+          GoalNow es tu portal de actualidad del fútbol masculino:
+          noticias, partidos, resultados, competiciones y mucho más.
+        </p>
+
+        <a href="#noticias" class="button">Ver últimas noticias</a>
+      </div>
+    </section>
+
+    <section id="noticias">
+
+      <div class="section-title">
+        <h2>Últimas noticias</h2>
+        <span>VER TODAS →</span>
+      </div>
+
+      <div class="news-grid">
+
+        <article class="card">
+          <div class="card-image">⚽</div>
+          <div class="card-content">
+            <div class="category">FÚTBOL</div>
+            <h3>Las grandes historias del fútbol están aquí</h3>
+            <p>
+              Noticias y actualidad del mundo del fútbol,
+              explicadas de forma clara y directa.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-image">🏆</div>
+          <div class="card-content">
+            <div class="category">COMPETICIONES</div>
+            <h3>Todo preparado para una nueva jornada</h3>
+            <p>
+              Consulta partidos, resultados y clasificación
+              de tus competiciones favoritas.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-image">📊</div>
+          <div class="card-content">
+            <div class="category">DATOS</div>
+            <h3>El fútbol también se entiende con números</h3>
+            <p>
+              Estadísticas y datos para conocer mejor
+              a equipos y jugadores.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section>
+
+      <div class="section-title">
+        <h2>Partidos</h2>
+        <span>PRÓXIMAMENTE</span>
+      </div>
+
+      <div class="matches">
+
+        <div class="match">
+          <div class="competition">PARTIDO</div>
+          <div class="teams">
+            Equipo local<br>
+            vs<br>
+            Equipo visitante
+          </div>
+          <div class="time">Información próximamente</div>
+        </div>
+
+        <div class="match">
+          <div class="competition">PARTIDO</div>
+          <div class="teams">
+            Equipo local<br>
+            vs<br>
+            Equipo visitante
+          </div>
+          <div class="time">Información próximamente</div>
+        </div>
+
+        <div class="match">
+          <div class="competition">PARTIDO</div>
+          <div class="teams">
+            Equipo local<br>
+            vs<br>
+            Equipo visitante
+          </div>
+          <div class="time">Información próximamente</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>GoalNow</strong> · EL FÚTBOL, AHORA.
+    <br><br>
+    Proyecto en desarrollo ⚽
+  </footer>
+
+</body>
+</html>
