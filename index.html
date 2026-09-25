@@ -386,88 +386,694 @@
   </footer>
 
 
-<button onclick="mostrarMensaje()">Probar función</button> 
-  <h2 style="margin-top:40px;">Partidos de hoy</h2>
+<h2 style="margin-top:40px;">Partidos de hoy</h2>
 
-<button onclick="mostrarPartidos()" style="background:#39ff14; color:#000; border:none; padding:14px 28px; border-radius:10px; font-size:17px; font-weight:bold; cursor:pointer; margin:15px 0;">
-    ⚽ Mostrar partidos
-</button>
+<div class="match-list">
 
-<div class="card" onclick="mostrarDetalle('real')"
-     style="cursor:pointer;">
-    <div style="text-align:center;">
-        <span style="font-size:14px; color:#39ff14;">🔴 EN DIRECTO</span>
-        <h3 style="font-size:20px; margin:8px 0;">
-            Real Madrid ⚔️ Barcelona
-        </h3>
-        <p style="margin:5px 0;">21:00</p>
-        <p style="margin:5px 0; color:#aaa;">🏆 LaLiga</p>
+    <div class="card match-card" onclick="mostrarDetalle('real')">
+        <div class="match-status live">🔴 EN DIRECTO</div>
+
+        <div class="teams">
+            <div>
+                <div class="team-logo madrid">RM</div>
+                <strong>Real Madrid</strong>
+            </div>
+
+            <div class="score">
+                <strong>2 - 1</strong>
+                <span>67'</span>
+            </div>
+
+            <div>
+                <div class="team-logo barca">FCB</div>
+                <strong>Barcelona</strong>
+            </div>
+        </div>
+
+        <small>🏆 LaLiga</small>
     </div>
+
+
+    <div class="card match-card" onclick="mostrarDetalle('city')">
+        <div class="match-status">🕐 18:30</div>
+
+        <div class="teams">
+            <div>
+                <div class="team-logo city">MCI</div>
+                <strong>Manchester City</strong>
+            </div>
+
+            <div class="score">
+                <strong>VS</strong>
+            </div>
+
+            <div>
+                <div class="team-logo arsenal">ARS</div>
+                <strong>Arsenal</strong>
+            </div>
+        </div>
+
+        <small>🏆 Premier League</small>
+    </div>
+
+
+    <div class="card match-card" onclick="mostrarDetalle('inter')">
+        <div class="match-status">🕐 20:45</div>
+
+        <div class="teams">
+            <div>
+                <div class="team-logo inter">INT</div>
+                <strong>Inter</strong>
+            </div>
+
+            <div class="score">
+                <strong>VS</strong>
+            </div>
+
+            <div>
+                <div class="team-logo juve">JUV</div>
+                <strong>Juventus</strong>
+            </div>
+        </div>
+
+        <small>🏆 Serie A</small>
+    </div>
+
 </div>
 
-<div class="card" onclick="mostrarDetalle('city')"
-     style="cursor:pointer;">
-    <div style="text-align:center;">
-        <h3 style="font-size:20px; margin:8px 0;">
-            Manchester City ⚔️ Arsenal
-        </h3>
-        <p style="margin:5px 0;">18:30</p>
-        <p style="margin:5px 0; color:#aaa;">🏆 Premier League</p>
-    </div>
-</div>
 
-<div class="card" onclick="mostrarDetalle('inter')"
-     style="cursor:pointer;">
-    <div style="text-align:center;">
-        <h3 style="font-size:20px; margin:8px 0;">
-            Inter ⚔️ Juventus
-        </h3>
-        <p style="margin:5px 0;">20:45</p>
-        <p style="margin:5px 0; color:#aaa;">🏆 Serie A</p>
-    </div>
-</div>
+<div id="detallePartido"></div>
 
-<div id="detallePartido" style="margin-top:20px;"></div>
-`;
+
+<style>
+
+.match-list {
+    display: grid;
+    gap: 15px;
 }
 
+.match-card {
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    text-align: center;
+}
+
+.match-card:hover {
+    transform: translateY(-3px);
+    border-color: #39ff14;
+}
+
+.match-status {
+    color: #aaa;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.match-status.live {
+    color: #39ff14;
+}
+
+.teams {
+    display: grid;
+    grid-template-columns: 1fr 90px 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+.team-logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13px;
+    background: #222;
+    border: 2px solid #555;
+}
+
+.madrid {
+    border-color: white;
+}
+
+.barca {
+    border-color: #a50044;
+}
+
+.city {
+    border-color: #6cabdd;
+}
+
+.arsenal {
+    border-color: #ef0107;
+}
+
+.inter {
+    border-color: #0068ff;
+}
+
+.juve {
+    border-color: white;
+}
+
+.score strong {
+    display: block;
+    font-size: 25px;
+}
+
+.score span {
+    color: #39ff14;
+    font-size: 14px;
+}
+
+#detallePartido {
+    margin-top: 25px;
+}
+
+.match-detail {
+    overflow: hidden;
+}
+
+.detail-header {
+    text-align: center;
+    padding: 25px 15px;
+}
+
+.detail-teams {
+    display: grid;
+    grid-template-columns: 1fr 120px 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-team-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.detail-score {
+    font-size: 38px;
+    font-weight: 900;
+}
+
+.detail-minute {
+    color: #39ff14;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.section-title {
+    text-align: center;
+    margin: 25px 0 15px;
+}
+
+.stat {
+    margin: 14px 20px;
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.stat-bar {
+    height: 9px;
+    background: #252525;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 6px;
+    display: flex;
+}
+
+.stat-home {
+    background: #39ff14;
+    height: 100%;
+}
+
+.stat-away {
+    background: #777;
+    height: 100%;
+}
+
+.pitch {
+    position: relative;
+    width: min(94%, 650px);
+    height: 650px;
+    margin: 20px auto;
+    background: #126b32;
+    border: 3px solid white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pitch::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255,255,255,0.8);
+}
+
+.pitch::after {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border: 2px solid white;
+    border-radius: 50%;
+    left: calc(50% - 65px);
+    top: calc(50% - 65px);
+}
+
+.penalty {
+    position: absolute;
+    width: 170px;
+    height: 90px;
+    border: 2px solid white;
+    left: calc(50% - 85px);
+}
+
+.penalty.top {
+    top: -2px;
+    border-top: none;
+}
+
+.penalty.bottom {
+    bottom: -2px;
+    border-bottom: none;
+}
+
+.player {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 70px;
+}
+
+.player-face {
+    width: 42px;
+    height: 42px;
+    margin: auto;
+    border-radius: 50%;
+    background: #f0c7a4;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.player-name {
+    font-size: 10px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.75);
+    border-radius: 5px;
+    padding: 3px;
+    margin-top: 3px;
+}
+
+.home-player .player-face {
+    border-color: #39ff14;
+}
+
+.away-player .player-face {
+    border-color: #ff3b3b;
+}
+
+.lineup-legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.legend-home {
+    color: #39ff14;
+}
+
+.legend-away {
+    color: #ff3b3b;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 15px;
+}
+
+.info-box {
+    background: #202020;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.info-number {
+    font-size: 23px;
+    font-weight: bold;
+    display: block;
+}
+
+.back-button {
+    display: block;
+    margin: 20px auto;
+    background: #39ff14;
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width:600px) {
+
+    .pitch {
+        height: 560px;
+    }
+
+    .detail-teams {
+        grid-template-columns: 1fr 90px 1fr;
+    }
+
+    .detail-team-name {
+        font-size: 14px;
+    }
+
+}
+
+</style>
+
+
+<script>
+
 function mostrarDetalle(partido) {
+
     const detalle = document.getElementById("detallePartido");
 
     if (partido === "real") {
+
         detalle.innerHTML = `
-            <div class="card" style="text-align:center;">
-                <span style="color:#39ff14; font-weight:bold;">🔴 EN DIRECTO</span>
+        <div class="card match-detail">
 
-                <h2>Real Madrid ⚔️ Barcelona</h2>
+            <div class="detail-header">
 
-                <div style="font-size:32px; font-weight:bold; margin:15px;">
-                    2 - 1
+                <div class="match-status live">
+                    🔴 EN DIRECTO
                 </div>
 
-                <p style="font-size:20px;">⏱️ <span id="minutoReal">67</span>'</p>
+                <div class="detail-teams">
 
-                <hr>
+                    <div>
+                        <div class="team-logo madrid">RM</div>
+                        <div class="detail-team-name">Real Madrid</div>
+                    </div>
 
-                <h3>📊 Estadísticas</h3>
-                <p>Posesión: <strong>54% - 46%</strong></p>
-                <p>Tiros: <strong>11 - 7</strong></p>
-                <p>Tiros a puerta: <strong>5 - 3</strong></p>
-                <p>Tarjetas: <strong>2 - 1</strong></p>
+                    <div>
+                        <div class="detail-score">2 - 1</div>
+                        <div class="detail-minute">67'</div>
+                    </div>
 
-                <hr>
+                    <div>
+                        <div class="team-logo barca">FCB</div>
+                        <div class="detail-team-name">Barcelona</div>
+                    </div>
 
-                <h3>⚽ Alineaciones</h3>
-                <p><strong>Real Madrid:</strong> Alineación titular</p>
-                <p><strong>Barcelona:</strong> Alineación titular</p>
+                </div>
+
+                <small>🏆 LaLiga</small>
+
             </div>
+
+
+            <h3 class="section-title">📊 Estadísticas del partido</h3>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+                    <span>54%</span>
+                    <span>Posesión</span>
+                    <span>46%</span>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-home" style="width:54%"></div>
+                    <div class="stat-away" style="width:46%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+                    <span>11</span>
+                    <span>Tiros</span>
+                    <span>7</span>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-home" style="width:61%"></div>
+                    <div class="stat-away" style="width:39%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+                    <span>5</span>
+                    <span>Tiros a puerta</span>
+                    <span>3</span>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-home" style="width:63%"></div>
+                    <div class="stat-away" style="width:37%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+                    <span>6</span>
+                    <span>Córners</span>
+                    <span>4</span>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-home" style="width:60%"></div>
+                    <div class="stat-away" style="width:40%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+                    <span>2</span>
+                    <span>Tarjetas</span>
+                    <span>1</span>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-home" style="width:67%"></div>
+                    <div class="stat-away" style="width:33%"></div>
+                </div>
+
+            </div>
+
+
+            <h3 class="section-title">👥 Alineaciones</h3>
+
+            <div class="lineup-legend">
+                <span class="legend-home">● Real Madrid</span>
+                <span class="legend-away">● Barcelona</span>
+            </div>
+
+
+            <div class="pitch">
+
+                <div class="penalty top"></div>
+                <div class="penalty bottom"></div>
+
+
+                <div class="player home-player" style="left:50%;top:88%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Courtois</div>
+                </div>
+
+                <div class="player home-player" style="left:20%;top:72%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Carvajal</div>
+                </div>
+
+                <div class="player home-player" style="left:40%;top:70%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Rüdiger</div>
+                </div>
+
+                <div class="player home-player" style="left:60%;top:70%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Militão</div>
+                </div>
+
+                <div class="player home-player" style="left:80%;top:72%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Fran García</div>
+                </div>
+
+                <div class="player home-player" style="left:35%;top:52%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Valverde</div>
+                </div>
+
+                <div class="player home-player" style="left:65%;top:52%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Bellingham</div>
+                </div>
+
+                <div class="player home-player" style="left:50%;top:40%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Arda Güler</div>
+                </div>
+
+                <div class="player home-player" style="left:20%;top:27%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Vinícius</div>
+                </div>
+
+                <div class="player home-player" style="left:80%;top:27%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Rodrygo</div>
+                </div>
+
+                <div class="player home-player" style="left:50%;top:18%;">
+                    <div class="player-face">🧑🏻</div>
+                    <div class="player-name">Mbappé</div>
+                </div>
+
+
+                <div class="player away-player" style="left:50%;top:12%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Ter Stegen</div>
+                </div>
+
+                <div class="player away-player" style="left:20%;top:28%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Koundé</div>
+                </div>
+
+                <div class="player away-player" style="left:40%;top:30%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Cubarsí</div>
+                </div>
+
+                <div class="player away-player" style="left:60%;top:30%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Araújo</div>
+                </div>
+
+                <div class="player away-player" style="left:80%;top:28%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Balde</div>
+                </div>
+
+                <div class="player away-player" style="left:35%;top:48%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Pedri</div>
+                </div>
+
+                <div class="player away-player" style="left:65%;top:48%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">De Jong</div>
+                </div>
+
+                <div class="player away-player" style="left:50%;top:60%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Olmo</div>
+                </div>
+
+                <div class="player away-player" style="left:20%;top:73%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Raphinha</div>
+                </div>
+
+                <div class="player away-player" style="left:80%;top:73%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Lamine</div>
+                </div>
+
+                <div class="player away-player" style="left:50%;top:82%;">
+                    <div class="player-face">🧑🏽</div>
+                    <div class="player-name">Lewandowski</div>
+                </div>
+
+            </div>
+
+
+            <h3 class="section-title">📋 Información</h3>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <span class="info-number">11</span>
+                    Tiros
+                </div>
+
+                <div class="info-box">
+                    <span class="info-number">7</span>
+                    Tiros rival
+                </div>
+
+                <div class="info-box">
+                    <span class="info-number">6</span>
+                    Córners
+                </div>
+
+                <div class="info-box">
+                    <span class="info-number">4</span>
+                    Córners rival
+                </div>
+
+                <div class="info-box">
+                    <span class="info-number">2</span>
+                    🟨 Tarjetas
+                </div>
+
+                <div class="info-box">
+                    <span class="info-number">1</span>
+                    🟨 Rival
+                </div>
+
+            </div>
+
+
+            <button class="back-button" onclick="cerrarDetalle()">
+                ← Volver a partidos
+            </button>
+
+        </div>
         `;
 
-        iniciarMinuto();
     }
 
     if (partido === "city") {
-        mostrarPartidoProximo(
+        mostrarProximo(
             "Manchester City",
             "Arsenal",
             "18:30",
@@ -476,64 +1082,94 @@ function mostrarDetalle(partido) {
     }
 
     if (partido === "inter") {
-        mostrarPartidoProximo(
+        mostrarProximo(
             "Inter",
             "Juventus",
             "20:45",
             "Serie A"
         );
     }
+
+    detalle.scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
-function mostrarPartidoProximo(local, visitante, hora, competicion) {
+
+function mostrarProximo(local, visitante, hora, competicion) {
+
     const detalle = document.getElementById("detallePartido");
 
     detalle.innerHTML = `
-        <div class="card" style="text-align:center;">
-            <span style="color:#aaa; font-weight:bold;">🕐 PRÓXIMAMENTE</span>
 
-            <h2>${local} ⚔️ ${visitante}</h2>
+        <div class="card match-detail">
 
-            <p style="font-size:24px; font-weight:bold;">
-                ${hora}
+            <div class="detail-header">
+
+                <div class="match-status">
+                    🕐 PRÓXIMAMENTE
+                </div>
+
+                <div class="detail-teams">
+
+                    <div>
+                        <div class="team-logo">${local.substring(0,3).toUpperCase()}</div>
+                        <div class="detail-team-name">${local}</div>
+                    </div>
+
+                    <div>
+                        <div class="detail-score">VS</div>
+                        <div id="cuentaAtras" class="detail-minute">
+                            Calculando...
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="team-logo">${visitante.substring(0,3).toUpperCase()}</div>
+                        <div class="detail-team-name">${visitante}</div>
+                    </div>
+
+                </div>
+
+                <p>🕐 ${hora}</p>
+                <small>🏆 ${competicion}</small>
+
+            </div>
+
+
+            <h3 class="section-title">👥 Alineaciones</h3>
+
+            <p style="text-align:center;color:#aaa;">
+                Las alineaciones se mostrarán cuando sean confirmadas.
             </p>
 
-            <p>🏆 ${competicion}</p>
 
-            <h3>⏳ Falta para empezar</h3>
+            <h3 class="section-title">📊 Estadísticas</h3>
 
-            <p id="cuentaAtras" style="font-size:25px; font-weight:bold;">
-                Calculando...
+            <p style="text-align:center;color:#aaa;">
+                El partido todavía no ha comenzado.
             </p>
 
-            <hr>
 
-            <h3>⚽ Alineaciones</h3>
-            <p><strong>${local}:</strong> Alineación titular</p>
-            <p><strong>${visitante}:</strong> Alineación titular</p>
+            <button class="back-button" onclick="cerrarDetalle()">
+                ← Volver a partidos
+            </button>
+
         </div>
     `;
 
     iniciarCuentaAtras(hora);
+
+    detalle.scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
-function iniciarMinuto() {
-    let minuto = 67;
-
-    setInterval(function() {
-        if (minuto < 90) {
-            minuto++;
-            const elemento = document.getElementById("minutoReal");
-
-            if (elemento) {
-                elemento.textContent = minuto;
-            }
-        }
-    }, 60000);
-}
 
 function iniciarCuentaAtras(hora) {
+
     const partes = hora.split(":");
+
     const objetivo = new Date();
 
     objetivo.setHours(
@@ -543,36 +1179,65 @@ function iniciarCuentaAtras(hora) {
         0
     );
 
+
     function actualizar() {
+
         const ahora = new Date();
+
         let diferencia = objetivo - ahora;
 
         if (diferencia < 0) {
             diferencia = 0;
         }
 
-        const horas = Math.floor(diferencia / 3600000);
-        const minutos = Math.floor((diferencia % 3600000) / 60000);
-        const segundos = Math.floor((diferencia % 60000) / 1000);
+        const horas = Math.floor(
+            diferencia / 3600000
+        );
 
-        const elemento = document.getElementById("cuentaAtras");
+        const minutos = Math.floor(
+            (diferencia % 3600000) / 60000
+        );
+
+        const segundos = Math.floor(
+            (diferencia % 60000) / 1000
+        );
+
+        const elemento =
+            document.getElementById("cuentaAtras");
 
         if (elemento) {
+
             elemento.textContent =
                 horas + "h " +
                 minutos + "m " +
                 segundos + "s";
+
         }
+
     }
 
     actualizar();
-    setInterval(actualizar, 1000);
-}</script>
 
-<script>
-function mostrarMensaje() {
-    alert("¡GoalNow funciona! ⚽");
+    setInterval(
+        actualizar,
+        1000
+    );
 }
+
+
+function cerrarDetalle() {
+
+    document.getElementById(
+        "detallePartido"
+    ).innerHTML = "";
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+
+}
+
 </script>
 </body>
 </html>
