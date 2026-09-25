@@ -428,12 +428,146 @@
 </div>
 
 <div id="detallePartido" style="margin-top:20px;"></div>
-
-`;
-
 `;
 }
-</script>
+
+function mostrarDetalle(partido) {
+    const detalle = document.getElementById("detallePartido");
+
+    if (partido === "real") {
+        detalle.innerHTML = `
+            <div class="card" style="text-align:center;">
+                <span style="color:#39ff14; font-weight:bold;">🔴 EN DIRECTO</span>
+
+                <h2>Real Madrid ⚔️ Barcelona</h2>
+
+                <div style="font-size:32px; font-weight:bold; margin:15px;">
+                    2 - 1
+                </div>
+
+                <p style="font-size:20px;">⏱️ <span id="minutoReal">67</span>'</p>
+
+                <hr>
+
+                <h3>📊 Estadísticas</h3>
+                <p>Posesión: <strong>54% - 46%</strong></p>
+                <p>Tiros: <strong>11 - 7</strong></p>
+                <p>Tiros a puerta: <strong>5 - 3</strong></p>
+                <p>Tarjetas: <strong>2 - 1</strong></p>
+
+                <hr>
+
+                <h3>⚽ Alineaciones</h3>
+                <p><strong>Real Madrid:</strong> Alineación titular</p>
+                <p><strong>Barcelona:</strong> Alineación titular</p>
+            </div>
+        `;
+
+        iniciarMinuto();
+    }
+
+    if (partido === "city") {
+        mostrarPartidoProximo(
+            "Manchester City",
+            "Arsenal",
+            "18:30",
+            "Premier League"
+        );
+    }
+
+    if (partido === "inter") {
+        mostrarPartidoProximo(
+            "Inter",
+            "Juventus",
+            "20:45",
+            "Serie A"
+        );
+    }
+}
+
+function mostrarPartidoProximo(local, visitante, hora, competicion) {
+    const detalle = document.getElementById("detallePartido");
+
+    detalle.innerHTML = `
+        <div class="card" style="text-align:center;">
+            <span style="color:#aaa; font-weight:bold;">🕐 PRÓXIMAMENTE</span>
+
+            <h2>${local} ⚔️ ${visitante}</h2>
+
+            <p style="font-size:24px; font-weight:bold;">
+                ${hora}
+            </p>
+
+            <p>🏆 ${competicion}</p>
+
+            <h3>⏳ Falta para empezar</h3>
+
+            <p id="cuentaAtras" style="font-size:25px; font-weight:bold;">
+                Calculando...
+            </p>
+
+            <hr>
+
+            <h3>⚽ Alineaciones</h3>
+            <p><strong>${local}:</strong> Alineación titular</p>
+            <p><strong>${visitante}:</strong> Alineación titular</p>
+        </div>
+    `;
+
+    iniciarCuentaAtras(hora);
+}
+
+function iniciarMinuto() {
+    let minuto = 67;
+
+    setInterval(function() {
+        if (minuto < 90) {
+            minuto++;
+            const elemento = document.getElementById("minutoReal");
+
+            if (elemento) {
+                elemento.textContent = minuto;
+            }
+        }
+    }, 60000);
+}
+
+function iniciarCuentaAtras(hora) {
+    const partes = hora.split(":");
+    const objetivo = new Date();
+
+    objetivo.setHours(
+        parseInt(partes[0]),
+        parseInt(partes[1]),
+        0,
+        0
+    );
+
+    function actualizar() {
+        const ahora = new Date();
+        let diferencia = objetivo - ahora;
+
+        if (diferencia < 0) {
+            diferencia = 0;
+        }
+
+        const horas = Math.floor(diferencia / 3600000);
+        const minutos = Math.floor((diferencia % 3600000) / 60000);
+        const segundos = Math.floor((diferencia % 60000) / 1000);
+
+        const elemento = document.getElementById("cuentaAtras");
+
+        if (elemento) {
+            elemento.textContent =
+                horas + "h " +
+                minutos + "m " +
+                segundos + "s";
+        }
+    }
+
+    actualizar();
+    setInterval(actualizar, 1000);
+}</script>
 
 <script>
 function mostrarMensaje() {
