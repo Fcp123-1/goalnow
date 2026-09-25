@@ -386,7 +386,33 @@
   </footer>
 
 
-<button onclick="mostrarMensaje()">Probar función</button>
+<button onclick="mostrarMensaje()">Probar función</button> 
+  <h2 style="margin-top:40px;">Partidos de hoy</h2>
+
+<button onclick="mostrarPartidos()">Mostrar partidos</button>
+
+<div id="partidos"></div>
+
+<script>
+function mostrarPartidos() {
+    document.getElementById("partidos").innerHTML = `
+        <div class="card">
+            <h3>Real Madrid vs Barcelona</h3>
+            <p>21:00 · LaLiga</p>
+        </div>
+
+        <div class="card">
+            <h3>Manchester City vs Arsenal</h3>
+            <p>18:30 · Premier League</p>
+        </div>
+
+        <div class="card">
+            <h3>Inter vs Juventus</h3>
+            <p>20:45 · Serie A</p>
+        </div>
+    `;
+}
+</script>
 
 <script>
 function mostrarMensaje() {
