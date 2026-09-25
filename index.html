@@ -393,24 +393,43 @@
     ⚽ Mostrar partidos
 </button>
 
-<div class="card">
+<div class="card" onclick="mostrarDetalle('real')"
+     style="cursor:pointer;">
     <div style="text-align:center;">
         <span style="font-size:14px; color:#39ff14;">🔴 EN DIRECTO</span>
-        <h3 style="font-size:20px; margin:8px 0;">Real Madrid ⚔️ Barcelona</h3>
+        <h3 style="font-size:20px; margin:8px 0;">
+            Real Madrid ⚔️ Barcelona
+        </h3>
         <p style="margin:5px 0;">21:00</p>
         <p style="margin:5px 0; color:#aaa;">🏆 LaLiga</p>
     </div>
 </div>
 
-<div class="card">
-    <h3>Manchester City ⚔️ Arsenal</h3>
-    <p>18:30 · Premier League</p>
+<div class="card" onclick="mostrarDetalle('city')"
+     style="cursor:pointer;">
+    <div style="text-align:center;">
+        <h3 style="font-size:20px; margin:8px 0;">
+            Manchester City ⚔️ Arsenal
+        </h3>
+        <p style="margin:5px 0;">18:30</p>
+        <p style="margin:5px 0; color:#aaa;">🏆 Premier League</p>
+    </div>
 </div>
 
-<div class="card">
-    <h3>Inter ⚔️ Juventus</h3>
-    <p>20:45 · Serie A</p>
+<div class="card" onclick="mostrarDetalle('inter')"
+     style="cursor:pointer;">
+    <div style="text-align:center;">
+        <h3 style="font-size:20px; margin:8px 0;">
+            Inter ⚔️ Juventus
+        </h3>
+        <p style="margin:5px 0;">20:45</p>
+        <p style="margin:5px 0; color:#aaa;">🏆 Serie A</p>
+    </div>
 </div>
+
+<div id="detallePartido" style="margin-top:20px;"></div>
+
+`;
 
 `;
 }
