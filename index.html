@@ -7,1245 +7,785 @@
 <title>GoalNow | El fútbol, ahora</title>
 
 <style>
-
-:root{
-    --bg:#080a0c;
-    --panel:#111418;
-    --panel2:#171b20;
-    --border:#252a30;
-    --text:#f5f7f8;
-    --muted:#8d959d;
-    --green:#39ff14;
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    min-height:100vh;
-}
-
-button{
-    font-family:inherit;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-/* HEADER */
-
-header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(8,10,12,.97);
-    border-bottom:1px solid var(--border);
-    backdrop-filter:blur(12px);
-}
-
-.header-inner{
-    max-width:1180px;
-    margin:auto;
-    height:72px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 22px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    cursor:pointer;
-}
-
-.logo svg{
-    width:38px;
-    height:38px;
-}
-
-.logo-text{
-    font-size:22px;
-    font-weight:800;
-    letter-spacing:-.7px;
-}
-
-.logo-text span{
-    color:var(--green);
-}
-
-nav{
-    display:flex;
-    gap:5px;
-}
-
-.nav-button{
-    background:transparent;
-    color:#aeb5bb;
-    border:0;
-    padding:10px 13px;
-    border-radius:7px;
-    cursor:pointer;
-    font-size:14px;
-    transition:.2s;
-}
-
-.nav-button:hover,
-.nav-button.active{
-    background:#171b20;
-    color:white;
-}
-
-.nav-button.active{
-    box-shadow:inset 0 -2px 0 var(--green);
-}
-
-/* MAIN */
-
-main{
-    max-width:1180px;
-    margin:auto;
-    padding:40px 22px 80px;
-}
-
-.view{
-    display:none;
-}
-
-.view.active{
-    display:block;
-}
-
-/* HERO */
-
-.hero{
-    padding:55px 0 45px;
-}
-
-.hero-label{
-    color:var(--green);
-    font-size:13px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    margin-bottom:14px;
-}
-
-.hero h1{
-    font-size:clamp(42px,8vw,76px);
-    line-height:.95;
-    letter-spacing:-4px;
-    max-width:750px;
-}
-
-.hero h1 span{
-    color:var(--green);
-}
-
-.hero p{
-    color:var(--muted);
-    font-size:17px;
-    margin-top:20px;
-    max-width:600px;
-    line-height:1.6;
-}
-
-.section-title{
-    display:flex;
-    align-items:end;
-    justify-content:space-between;
-    margin:35px 0 18px;
-}
-
-.section-title h2{
-    font-size:25px;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.section-title span{
-    color:var(--muted);
-    font-size:13px;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0d0f;
+    color: white;
 }
-
-/* CARDS */
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
+header {
+    background: #101316;
+    border-bottom: 1px solid #252a2e;
+    padding: 18px 6%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.card{
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:10px;
+.header-content {
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
 }
 
-.match-card{
-    padding:20px;
-    cursor:pointer;
-    transition:.2s;
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.match-card:hover{
-    border-color:#394047;
-    transform:translateY(-2px);
+.logo span {
+    color: #b7ff00;
 }
 
-.match-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+nav {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
 }
 
-.competition{
-    color:var(--muted);
-    font-size:12px;
+nav button {
+    background: none;
+    border: none;
+    color: #b8bdc1;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.status{
-    font-size:11px;
-    font-weight:700;
-    text-transform:uppercase;
+nav button:hover {
+    color: #b7ff00;
 }
 
-.status.live{
-    color:var(--green);
+main {
+    max-width: 1250px;
+    margin: auto;
+    padding: 45px 6%;
 }
 
-.status.finished{
-    color:#9ca3aa;
+.hero {
+    padding: 55px 0;
 }
 
-.status.upcoming{
-    color:#c5cbd0;
+.hero h1 {
+    font-size: clamp(45px, 8vw, 85px);
+    line-height: .95;
+    letter-spacing: -4px;
 }
 
-.teams{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
+.hero h1 span {
+    color: #b7ff00;
 }
 
-.team{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    gap:9px;
+.hero p {
+    color: #8e969c;
+    margin-top: 18px;
+    font-size: 18px;
 }
 
-.team img{
-    width:42px;
-    height:42px;
-    object-fit:contain;
+.section {
+    margin-top: 50px;
 }
 
-.team-name{
-    font-size:14px;
-    line-height:1.25;
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+    gap: 15px;
 }
 
-.score{
-    min-width:65px;
-    text-align:center;
-    font-size:25px;
-    font-weight:800;
+.section-title h2 {
+    font-size: 27px;
 }
 
-.time{
-    font-size:13px;
-    color:var(--muted);
-    margin-top:5px;
+select {
+    background: #15191c;
+    color: white;
+    border: 1px solid #30363b;
+    padding: 10px 13px;
+    border-radius: 7px;
 }
 
-/* BUTTONS */
-
-.primary-button{
-    background:var(--green);
-    color:#050705;
-    border:0;
-    padding:12px 18px;
-    border-radius:7px;
-    font-weight:800;
-    cursor:pointer;
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
 }
 
-.back-button{
-    background:transparent;
-    color:#b8bec3;
-    border:1px solid var(--border);
-    padding:10px 15px;
-    border-radius:7px;
-    cursor:pointer;
-    margin-bottom:25px;
+.card {
+    background: #121619;
+    border: 1px solid #242a2e;
+    border-radius: 12px;
+    padding: 20px;
 }
-
-/* FILTERS */
 
-.filters{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin:20px 0;
+.match-card {
+    cursor: pointer;
+    transition: .2s;
 }
 
-.filter{
-    background:var(--panel);
-    color:#aeb5bb;
-    border:1px solid var(--border);
-    padding:9px 13px;
-    border-radius:6px;
-    cursor:pointer;
+.match-card:hover {
+    border-color: #b7ff00;
+    transform: translateY(-2px);
 }
 
-.filter.active{
-    color:var(--green);
-    border-color:var(--green);
+.competition {
+    color: #858d92;
+    font-size: 12px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
 }
 
-/* MATCH DETAIL */
-
-.match-detail-header{
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:35px 20px;
-    text-align:center;
+.teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
 }
 
-.detail-competition{
-    color:var(--muted);
-    font-size:13px;
-    margin-bottom:18px;
+.team {
+    width: 42%;
+    text-align: center;
 }
 
-.detail-status{
-    color:var(--green);
-    font-size:12px;
-    font-weight:800;
-    text-transform:uppercase;
-    margin-bottom:15px;
+.team img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px;
 }
 
-.detail-teams{
-    display:grid;
-    grid-template-columns:1fr 140px 1fr;
-    align-items:center;
-    gap:20px;
+.team-name {
+    font-size: 14px;
 }
 
-.detail-team img{
-    width:70px;
-    height:70px;
-    object-fit:contain;
-    margin-bottom:10px;
+.score {
+    font-size: 25px;
+    font-weight: bold;
 }
 
-.detail-team-name{
-    font-size:19px;
-    font-weight:700;
+.status {
+    margin-top: 18px;
+    text-align: center;
+    color: #b7ff00;
+    font-size: 13px;
 }
 
-.detail-score{
-    font-size:45px;
-    font-weight:900;
+.finished {
+    color: #888;
 }
 
-.detail-time{
-    color:var(--muted);
-    font-size:14px;
-    margin-top:6px;
+.page-title {
+    font-size: 38px;
+    margin-bottom: 30px;
 }
-
-/* PANELS */
 
-.panel{
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:22px;
+.back {
+    background: none;
+    border: none;
+    color: #b7ff00;
+    cursor: pointer;
+    margin-bottom: 25px;
+    font-size: 14px;
 }
 
-.panel h3{
-    font-size:16px;
-    margin-bottom:20px;
+.detail {
+    background: #121619;
+    border: 1px solid #252b2f;
+    border-radius: 14px;
+    padding: 35px;
 }
 
-.stat-row{
-    margin:17px 0;
+.detail-teams {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
 }
 
-.stat-values{
-    display:flex;
-    justify-content:space-between;
-    font-size:13px;
-    margin-bottom:7px;
+.detail-team img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 15px;
 }
 
-.stat-bar{
-    height:5px;
-    background:#292e33;
-    border-radius:20px;
-    overflow:hidden;
-    display:flex;
+.detail-team h2 {
+    font-size: 20px;
 }
 
-.stat-home{
-    background:var(--green);
+.detail-score {
+    font-size: 40px;
+    font-weight: 800;
 }
 
-.stat-away{
-    background:#737b82;
+.info-grid {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
 }
 
-/* TABLE */
-
-.table-wrap{
-    overflow-x:auto;
-    border:1px solid var(--border);
-    border-radius:10px;
+.info-box {
+    background: #0d1012;
+    border: 1px solid #242a2e;
+    padding: 18px;
+    border-radius: 9px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:680px;
-    background:var(--panel);
+.info-box small {
+    color: #777f84;
+    display: block;
+    margin-bottom: 7px;
 }
 
-th{
-    color:#7f878e;
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:.7px;
-    font-weight:600;
+.league-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
-th,td{
-    padding:13px 12px;
-    border-bottom:1px solid var(--border);
-    text-align:center;
+.league-button {
+    background: #15191c;
+    border: 1px solid #30363b;
+    color: #ddd;
+    padding: 11px 15px;
+    border-radius: 7px;
+    cursor: pointer;
 }
 
-td{
-    font-size:13px;
+.league-button.active,
+.league-button:hover {
+    background: #b7ff00;
+    color: #080a0b;
+    border-color: #b7ff00;
 }
 
-td:first-child,
-th:first-child{
-    text-align:left;
+.table-wrapper {
+    overflow-x: auto;
 }
 
-.club-cell{
-    display:flex;
-    align-items:center;
-    gap:10px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #121619;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-.club-cell img{
-    width:30px;
-    height:30px;
-    object-fit:contain;
-    flex-shrink:0;
+th,
+td {
+    padding: 13px 10px;
+    text-align: center;
+    border-bottom: 1px solid #242a2e;
 }
-
-/* NEWS */
 
-.news-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
+th {
+    color: #777f84;
+    font-size: 12px;
+    text-transform: uppercase;
 }
 
-.news-card{
-    overflow:hidden;
-    transition:.2s;
+td {
+    font-size: 14px;
 }
 
-.news-card:hover{
-    border-color:#3b4249;
-    transform:translateY(-2px);
+.club {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    min-width: 180px;
 }
 
-.news-image{
-    width:100%;
-    height:170px;
-    object-fit:cover;
-    background:#181c20;
-    display:block;
+.club img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
 }
 
-.news-content{
-    padding:18px;
+.position {
+    color: #858d92;
 }
 
-.news-content h3{
-    font-size:16px;
-    line-height:1.35;
+.news-card h3 {
+    margin-bottom: 10px;
+    line-height: 1.3;
 }
 
-.news-content p{
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.5;
-    margin-top:10px;
+.news-card p {
+    color: #8e969c;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
-.news-date{
-    color:#6f777e;
-    font-size:11px;
-    margin-top:14px;
+.loading {
+    color: #777f84;
+    padding: 30px 0;
 }
 
-/* LOADING */
-
-.loading{
-    color:var(--muted);
-    padding:35px 0;
-    text-align:center;
+.error {
+    color: #ff6464;
+    padding: 20px 0;
 }
 
-.error{
-    border:1px solid #493131;
-    background:#1b1111;
-    color:#d9aaaa;
-    padding:18px;
-    border-radius:8px;
-    line-height:1.5;
+footer {
+    border-top: 1px solid #252a2e;
+    margin-top: 80px;
+    padding: 35px 6%;
+    text-align: center;
+    color: #70777c;
+    font-size: 13px;
 }
-
-/* FOOTER */
 
-footer{
-    border-top:1px solid var(--border);
-    color:#626a71;
-    text-align:center;
-    padding:30px 20px;
-    font-size:12px;
+footer strong {
+    display: block;
+    color: #b7ff00;
+    margin-top: 8px;
+    font-size: 14px;
 }
 
-footer strong{
-    color:white;
+.hidden {
+    display: none;
 }
-
-/* MOBILE */
-
-@media(max-width:800px){
 
-    nav{
-        overflow-x:auto;
-        max-width:62%;
+@media (max-width: 700px) {
+    header {
+        position: static;
     }
 
-    .nav-button{
-        white-space:nowrap;
-        padding:9px;
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .grid,
-    .news-grid{
-        grid-template-columns:1fr;
+    nav {
+        gap: 14px;
     }
 
-    .detail-teams{
-        grid-template-columns:1fr 90px 1fr;
+    main {
+        padding: 30px 5%;
     }
 
-    .detail-team img{
-        width:55px;
-        height:55px;
+    .hero h1 {
+        letter-spacing: -2px;
     }
 
-    .detail-team-name{
-        font-size:15px;
+    .detail {
+        padding: 20px;
     }
 
-    .detail-score{
-        font-size:34px;
+    .detail-teams {
+        gap: 10px;
     }
 
-    .hero{
-        padding-top:30px;
+    .detail-team img {
+        width: 65px;
+        height: 65px;
     }
-
-    .hero h1{
-        letter-spacing:-2px;
-    }
-
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
+    <div class="header-content">
 
-<div class="header-inner">
+        <div class="logo">
+            Goal<span>Now</span>
+        </div>
 
-<div class="logo" onclick="showView('home')">
+        <nav>
+            <button onclick="showHome()">Inicio</button>
+            <button onclick="showMatches()">Partidos</button>
+            <button onclick="showStandings()">Clasificaciones</button>
+            <button onclick="showNews()">Noticias</button>
+        </nav>
 
-<svg viewBox="0 0 48 48" fill="none">
-
-<path
-d="M7 39V9H41V39"
-stroke="#39ff14"
-stroke-width="3"
-stroke-linecap="round"
-/>
-
-<path
-d="M7 39H41"
-stroke="#ffffff"
-stroke-width="3"
-stroke-linecap="round"
-/>
-
-<circle
-cx="24"
-cy="29"
-r="6"
-stroke="#ffffff"
-stroke-width="2"
-/>
-
-<path
-d="M20 25L24 23L28 25L29 29L26 33H22L19 29L20 25Z"
-stroke="#ffffff"
-stroke-width="1.5"
-/>
-
-</svg>
-
-<div class="logo-text">
-Goal<span>Now</span>
-</div>
-
-</div>
-
-<nav>
-
-<button class="nav-button active"
-data-view="home"
-onclick="showView('home')">
-Inicio
-</button>
-
-<button class="nav-button"
-data-view="matches"
-onclick="showView('matches')">
-Partidos
-</button>
-
-<button class="nav-button"
-data-view="standings"
-onclick="showView('standings')">
-Clasificaciones
-</button>
-
-<button class="nav-button"
-data-view="news"
-onclick="showView('news')">
-Noticias
-</button>
-
-</nav>
-
-</div>
-
+    </div>
 </header>
-
 
 <main>
 
-<!-- INICIO -->
+    <!-- INICIO -->
+    <section id="home">
 
-<section id="home" class="view active">
+        <div class="hero">
+            <h1>EL FÚTBOL,<br><span>AHORA.</span></h1>
+            <p>Actualidad, partidos y competiciones del fútbol masculino.</p>
+        </div>
 
-<div class="hero">
+        <div class="section">
 
-<div class="hero-label">
-GoalNow
-</div>
+            <div class="section-title">
+                <h2>Partidos</h2>
+                <button class="league-button" onclick="showMatches()">Ver todos</button>
+            </div>
 
-<h1>
-El fútbol,<br>
-<span>ahora.</span>
-</h1>
+            <div id="homeMatches" class="cards">
+                <div class="loading">Cargando partidos...</div>
+            </div>
 
-<p>
-Resultados, partidos, clasificaciones y actualidad del fútbol masculino en un solo lugar.
-</p>
+        </div>
 
-</div>
+    </section>
 
-<div class="section-title">
 
-<h2>Partidos</h2>
+    <!-- PARTIDOS -->
+    <section id="matches" class="hidden">
 
-<button class="primary-button"
-onclick="showView('matches')">
-Ver todos
-</button>
+        <button class="back" onclick="showHome()">← Volver</button>
 
-</div>
+        <h1 class="page-title">Partidos</h1>
 
-<div id="homeMatches" class="grid">
+        <div class="league-buttons">
 
-<div class="loading">
-Cargando partidos...
-</div>
+            <button class="league-button active"
+                    onclick="selectLeague('eng.1', this)">
+                Premier League
+            </button>
 
-</div>
+            <button class="league-button"
+                    onclick="selectLeague('esp.1', this)">
+                LaLiga
+            </button>
 
-</section>
+            <button class="league-button"
+                    onclick="selectLeague('ita.1', this)">
+                Serie A
+            </button>
 
+            <button class="league-button"
+                    onclick="selectLeague('ger.1', this)">
+                Bundesliga
+            </button>
 
-<!-- PARTIDOS -->
+            <button class="league-button"
+                    onclick="selectLeague('fra.1', this)">
+                Ligue 1
+            </button>
 
-<section id="matches" class="view">
+            <button class="league-button"
+                    onclick="selectLeague('uefa.champions', this)">
+                Champions League
+            </button>
 
-<div class="section-title">
+        </div>
 
-<div>
+        <div id="matchesList" class="cards">
+            <div class="loading">Cargando partidos...</div>
+        </div>
 
-<h2>Partidos</h2>
+    </section>
 
-<span>
-Últimos resultados y próximos encuentros
-</span>
 
-</div>
+    <!-- DETALLE -->
+    <section id="matchDetail" class="hidden">
 
-</div>
+        <button class="back" onclick="showMatches()">← Volver a partidos</button>
 
-<div id="leagueFilters" class="filters"></div>
+        <div id="detailContent"></div>
 
-<div id="matchesList" class="grid">
+    </section>
 
-<div class="loading">
-Cargando partidos...
-</div>
 
-</div>
+    <!-- CLASIFICACIONES -->
+    <section id="standings" class="hidden">
 
-</section>
+        <button class="back" onclick="showHome()">← Volver</button>
 
+        <h1 class="page-title">Clasificaciones</h1>
 
-<!-- DETALLE -->
+        <div class="league-buttons">
 
-<section id="matchDetail" class="view">
+            <button class="league-button active"
+                    onclick="selectStandings('eng.1', this)">
+                Premier League
+            </button>
 
-<button class="back-button"
-onclick="showView('matches')">
-Volver a partidos
-</button>
+            <button class="league-button"
+                    onclick="selectStandings('esp.1', this)">
+                LaLiga
+            </button>
 
-<div id="matchDetailContent">
+            <button class="league-button"
+                    onclick="selectStandings('ita.1', this)">
+                Serie A
+            </button>
 
-<div class="loading">
-Cargando partido...
-</div>
+            <button class="league-button"
+                    onclick="selectStandings('ger.1', this)">
+                Bundesliga
+            </button>
 
-</div>
+            <button class="league-button"
+                    onclick="selectStandings('fra.1', this)">
+                Ligue 1
+            </button>
 
-</section>
+        </div>
 
+        <div class="table-wrapper">
 
-<!-- CLASIFICACIONES -->
+            <table>
 
-<section id="standings" class="view">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Equipo</th>
+                        <th>PJ</th>
+                        <th>G</th>
+                        <th>E</th>
+                        <th>P</th>
+                        <th>GF</th>
+                        <th>GC</th>
+                        <th>DG</th>
+                        <th>Pts</th>
+                    </tr>
+                </thead>
 
-<div class="section-title">
+                <tbody id="standingsBody">
+                    <tr>
+                        <td colspan="10" class="loading">
+                            Cargando clasificación...
+                        </td>
+                    </tr>
+                </tbody>
 
-<div>
+            </table>
 
-<h2>Clasificaciones</h2>
+        </div>
 
-<span>
-Tabla actual de la competición
-</span>
+    </section>
 
-</div>
 
-</div>
+    <!-- NOTICIAS -->
+    <section id="news" class="hidden">
 
-<div id="standingFilters"
-class="filters">
-</div>
+        <button class="back" onclick="showHome()">← Volver</button>
 
-<div id="standingsContent">
+        <h1 class="page-title">Noticias</h1>
 
-<div class="loading">
-Cargando clasificación...
-</div>
+        <div id="newsList" class="cards">
+            <div class="loading">Cargando noticias...</div>
+        </div>
 
-</div>
-
-</section>
-
-
-<!-- NOTICIAS -->
-
-<section id="news" class="view">
-
-<div class="section-title">
-
-<div>
-
-<h2>Noticias</h2>
-
-<span>
-Actualidad del fútbol
-</span>
-
-</div>
-
-</div>
-
-<div id="newsFilters"
-class="filters">
-</div>
-
-<div id="newsContent"
-class="news-grid">
-
-<div class="loading">
-Cargando noticias...
-</div>
-
-</div>
-
-</section>
+    </section>
 
 </main>
 
 
 <footer>
-
-<strong>GoalNow</strong> · EL FÚTBOL, AHORA.
-
-<br><br>
-
-Proyecto en desarrollo
-
+    <div>Proyecto en desarrollo</div>
+    <strong>Hecho por: Francisco. C.P</strong>
 </footer>
 
 
 <script>
 
-/* ==========================================
-   CONFIGURACIÓN
-========================================== */
+const API = "https://site.api.espn.com/apis/site/v2/sports/soccer/";
 
-const LEAGUES = {
+let currentLeague = "eng.1";
 
-    laliga:{
-        name:"LaLiga",
-        slug:"esp.1"
-    },
-
-    premier:{
-        name:"Premier League",
-        slug:"eng.1"
-    },
-
-    seriea:{
-        name:"Serie A",
-        slug:"ita.1"
-    },
-
-    bundesliga:{
-        name:"Bundesliga",
-        slug:"ger.1"
-    },
-
-    ligue1:{
-        name:"Ligue 1",
-        slug:"fra.1"
-    },
-
-    champions:{
-        name:"Champions League",
-        slug:"uefa.champions"
-    }
-
+const leagues = {
+    "eng.1": "Premier League",
+    "esp.1": "LaLiga",
+    "ita.1": "Serie A",
+    "ger.1": "Bundesliga",
+    "fra.1": "Ligue 1",
+    "uefa.champions": "Champions League"
 };
 
-const API =
-"https://site.api.espn.com/apis/site/v2/sports/soccer/";
 
-const STANDINGS_API =
-"https://site.api.espn.com/apis/v2/sports/soccer/";
-
-let currentLeague = "all";
-
-let currentStandingsLeague = "laliga";
-
-let currentNewsLeague = "laliga";
-
-let matchesCache = [];
-
-
-/* ==========================================
+/* =========================
    NAVEGACIÓN
-========================================== */
+========================= */
 
-function showView(view){
+function hideAll() {
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("matches").classList.add("hidden");
+    document.getElementById("matchDetail").classList.add("hidden");
+    document.getElementById("standings").classList.add("hidden");
+    document.getElementById("news").classList.add("hidden");
+}
 
-    document.querySelectorAll(".view")
-    .forEach(section=>{
-        section.classList.remove("active");
-    });
+function showHome() {
+    hideAll();
+    document.getElementById("home").classList.remove("hidden");
+}
 
-    const selected =
-        document.getElementById(view);
+function showMatches() {
+    hideAll();
+    document.getElementById("matches").classList.remove("hidden");
+    loadMatches(currentLeague);
+}
 
-    if(selected){
-        selected.classList.add("active");
-    }
+function showStandings() {
+    hideAll();
+    document.getElementById("standings").classList.remove("hidden");
+    loadStandings(currentLeague);
+}
 
-    document.querySelectorAll(".nav-button")
-    .forEach(button=>{
-
-        button.classList.remove("active");
-
-        if(button.dataset.view === view){
-            button.classList.add("active");
-        }
-
-    });
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-    if(view === "matches"){
-        loadMatches();
-    }
-
-    if(view === "standings"){
-        loadStandings(currentStandingsLeague);
-    }
-
-    if(view === "news"){
-        loadNews(currentNewsLeague);
-    }
-
+function showNews() {
+    hideAll();
+    document.getElementById("news").classList.remove("hidden");
+    loadNews();
 }
 
 
-/* ==========================================
-   API
-========================================== */
+/* =========================
+   FECHAS
+========================= */
 
-async function getJSON(url){
+function formatDate(date) {
 
-    const response =
-        await fetch(url);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
 
-    if(!response.ok){
-        throw new Error(
-            "Error HTTP " + response.status
+    return `${year}${month}${day}`;
+}
+
+function getDateRange() {
+
+    const today = new Date();
+
+    const start = new Date(today);
+    start.setDate(today.getDate() - 3);
+
+    const end = new Date(today);
+    end.setDate(today.getDate() + 14);
+
+    return `${formatDate(start)}-${formatDate(end)}`;
+}
+
+
+/* =========================
+   LOGOS DE EQUIPOS
+========================= */
+
+function getLogoCandidates(team) {
+
+    const logos = [];
+
+    if (!team) return logos;
+
+    if (team.logo) {
+        logos.push(team.logo);
+    }
+
+    if (team.logos && Array.isArray(team.logos)) {
+
+        team.logos.forEach(logo => {
+
+            if (logo && logo.href) {
+                logos.push(logo.href);
+            }
+
+        });
+    }
+
+    if (team.id) {
+
+        logos.push(
+            `https://a.espncdn.com/i/teamlogos/soccer/500/${team.id}.png`
         );
+
+    }
+
+    return [...new Set(logos)];
+}
+
+
+function logoHTML(team, className = "") {
+
+    const logos = getLogoCandidates(team);
+
+    if (logos.length === 0) {
+        return "";
+    }
+
+    const first = logos[0];
+
+    const remaining = logos.slice(1);
+
+    return `
+        <img
+            class="${className}"
+            src="${first}"
+            data-fallbacks='${JSON.stringify(remaining)}'
+            onerror="tryNextLogo(this)"
+            alt=""
+        >
+    `;
+}
+
+
+function tryNextLogo(img) {
+
+    try {
+
+        const fallbacks =
+            JSON.parse(img.dataset.fallbacks || "[]");
+
+        if (fallbacks.length > 0) {
+
+            const next = fallbacks.shift();
+
+            img.dataset.fallbacks =
+                JSON.stringify(fallbacks);
+
+            img.src = next;
+
+        } else {
+
+            img.style.display = "none";
+
+        }
+
+    } catch {
+
+        img.style.display = "none";
+
+    }
+}
+
+
+/* =========================
+   PARTIDOS
+========================= */
+
+async function getMatches(league) {
+
+    const range = getDateRange();
+
+    const url =
+        `${API}${league}/scoreboard?dates=${range}`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error("No se pudieron cargar los partidos");
     }
 
     return await response.json();
-
 }
 
 
-/* ==========================================
-   FECHAS
-========================================== */
-
-function dateKey(date){
-
-    const year =
-        date.getFullYear();
-
-    const month =
-        String(
-            date.getMonth()+1
-        ).padStart(2,"0");
-
-    const day =
-        String(
-            date.getDate()
-        ).padStart(2,"0");
-
-    return `${year}${month}${day}`;
-
-}
-
-
-/*
-   Descargamos partidos desde unos días anteriores
-   hasta varios días posteriores.
-
-   Así la sección de cada liga no se queda
-   solamente con los partidos de hoy.
-*/
-
-function getDateRange(){
-
-    const start =
-        new Date();
-
-    start.setDate(
-        start.getDate() - 3
-    );
-
-    const end =
-        new Date();
-
-    end.setDate(
-        end.getDate() + 14
-    );
-
-    return {
-        start:dateKey(start),
-        end:dateKey(end)
-    };
-
-}
-
-
-/* ==========================================
-   CARGA DE PARTIDOS
-========================================== */
-
-async function loadMatches(){
-
-    const container =
-        document.getElementById("matchesList");
-
-    const homeContainer =
-        document.getElementById("homeMatches");
-
-    container.innerHTML =
-        `<div class="loading">
-            Cargando partidos...
-        </div>`;
-
-    homeContainer.innerHTML =
-        `<div class="loading">
-            Cargando partidos...
-        </div>`;
-
-    try{
-
-        const range =
-            getDateRange();
-
-        const leagueEntries =
-            Object.entries(LEAGUES);
-
-        const responses =
-            await Promise.all(
-
-                leagueEntries.map(
-                    async ([key,league])=>{
-
-                        const url =
-                            API +
-                            league.slug +
-                            "/scoreboard?dates=" +
-                            range.start +
-                            "-" +
-                            range.end;
-
-                        let data;
-
-                        try{
-
-                            data =
-                                await getJSON(url);
-
-                        }catch(error){
-
-                            /*
-                               Si ESPN no acepta el rango,
-                               probamos solamente hoy.
-                            */
-
-                            data =
-                                await getJSON(
-                                    API +
-                                    league.slug +
-                                    "/scoreboard"
-                                );
-
-                        }
-
-                        return {
-                            key,
-                            league,
-                            data
-                        };
-
-                    }
-                )
-
-            );
-
-        matchesCache = [];
-
-        responses.forEach(result=>{
-
-            const events =
-                result.data.events || [];
-
-            events.forEach(event=>{
-
-                event.leagueKey =
-                    result.key;
-
-                event.leagueName =
-                    result.league.name;
-
-                event.leagueSlug =
-                    result.league.slug;
-
-                matchesCache.push(event);
-
-            });
-
-        });
-
-
-        /*
-           Evitamos partidos repetidos.
-        */
-
-        const unique =
-            new Map();
-
-        matchesCache.forEach(event=>{
-            unique.set(event.id,event);
-        });
-
-        matchesCache =
-            Array.from(unique.values());
-
-
-        /*
-           Orden cronológico.
-        */
-
-        matchesCache.sort(
-            (a,b)=>
-                new Date(a.date) -
-                new Date(b.date)
-        );
-
-
-        renderLeagueFilters();
-
-        renderMatches();
-
-        renderHomeMatches();
-
-
-    }catch(error){
-
-        console.error(error);
-
-        const message = `
-
-            <div class="error">
-
-                No se han podido cargar los partidos.
-
-                <br><br>
-
-                Comprueba tu conexión a Internet y vuelve a cargar la página.
-
-            </div>
-
-        `;
-
-        container.innerHTML =
-            message;
-
-        homeContainer.innerHTML =
-            message;
-
-    }
-
-}
-
-
-/* ==========================================
-   LOGOS
-========================================== */
-
-function getLogo(team){
-
-    if(!team){
-        return "";
-    }
-
-    if(team.logo){
-        return team.logo;
-    }
-
-    if(
-        team.logos &&
-        team.logos.length
-    ){
-        return team.logos[0].href || "";
-    }
-
-    return "";
-
-}
-
-
-/* ==========================================
-   FECHA BONITA
-========================================== */
-
-function formatDate(date){
-
-    if(!date){
-        return "";
-    }
-
-    const d =
-        new Date(date);
-
-    return d.toLocaleString(
-        "es-ES",
-        {
-            day:"2-digit",
-            month:"2-digit",
-            hour:"2-digit",
-            minute:"2-digit"
-        }
-    );
-
-}
-
-
-/* ==========================================
-   ESTADO
-========================================== */
-
-function getStatus(event){
+function getMatchStatus(event) {
 
     const competition =
         event.competitions?.[0];
@@ -1253,1621 +793,789 @@ function getStatus(event){
     const status =
         competition?.status?.type;
 
-    if(!status){
+    if (!status) {
+        return "";
+    }
 
-        return {
-            text:"Programado",
-            className:"upcoming"
-        };
+    if (status.state === "in") {
+
+        return competition.status.displayClock
+            ? competition.status.displayClock
+            : "En directo";
 
     }
 
-    if(status.completed){
-
-        return {
-            text:"Finalizado",
-            className:"finished"
-        };
-
+    if (status.completed) {
+        return "Finalizado";
     }
 
-    if(status.state === "in"){
-
-        return {
-            text:
-                status.shortDetail ||
-                "En directo",
-            className:"live"
-        };
-
-    }
-
-    return {
-        text:
-            status.shortDetail ||
-            "Programado",
-        className:"upcoming"
-    };
-
+    return status.shortDetail || status.detail || "Próximo";
 }
 
 
-/* ==========================================
-   TARJETA DE PARTIDO
-========================================== */
+function isLive(event) {
 
-function createMatchCard(event){
+    return event.competitions?.[0]?.status?.type?.state === "in";
+}
+
+
+function isCompleted(event) {
+
+    return event.competitions?.[0]?.status?.type?.completed === true;
+}
+
+
+function matchTime(event) {
+
+    const date =
+        new Date(event.date);
+
+    return date.toLocaleString("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+
+function renderMatch(event) {
 
     const competition =
         event.competitions?.[0];
 
-    if(!competition){
-        return "";
-    }
-
     const competitors =
-        competition.competitors || [];
+        competition?.competitors || [];
 
     const home =
-        competitors.find(
-            c=>c.homeAway==="home"
-        );
+        competitors.find(c => c.homeAway === "home");
 
     const away =
-        competitors.find(
-            c=>c.homeAway==="away"
-        );
+        competitors.find(c => c.homeAway === "away");
 
-    if(!home || !away){
+    if (!home || !away) {
         return "";
     }
 
-    const status =
-        getStatus(event);
+    const homeTeam =
+        home.team || {};
 
-    const homeScore =
-        home.score !== undefined
-        ? home.score
-        : "-";
+    const awayTeam =
+        away.team || {};
 
-    const awayScore =
-        away.score !== undefined
-        ? away.score
-        : "-";
+    const completed =
+        isCompleted(event);
 
+    const live =
+        isLive(event);
+
+    let status =
+        getMatchStatus(event);
+
+    if (!live && !completed) {
+        status = matchTime(event);
+    }
 
     return `
 
-    <article
-        class="card match-card"
-        onclick="openMatch(
-            '${event.id}',
-            '${event.leagueSlug}'
-        )"
-    >
+        <div class="card match-card"
+             onclick="openMatch('${event.id}', '${currentLeague}')">
 
-        <div class="match-top">
-
-            <span class="competition">
-                ${event.leagueName}
-            </span>
-
-            <span class="status ${status.className}">
-                ${status.text}
-            </span>
-
-        </div>
-
-
-        <div class="teams">
-
-            <div class="team">
-
-                <img
-                    src="${getLogo(home.team)}"
-                    alt=""
-                    onerror="
-                        this.style.display='none'
-                    "
-                >
-
-                <span class="team-name">
-                    ${home.team.displayName}
-                </span>
-
+            <div class="competition">
+                ${leagues[currentLeague] || "Fútbol"}
             </div>
 
+            <div class="teams">
 
-            <div>
+                <div class="team">
 
-                <div class="score">
-                    ${homeScore} - ${awayScore}
-                </div>
+                    ${logoHTML(homeTeam)}
 
-                <div class="time">
-                    ${formatDate(event.date)}
-                </div>
-
-            </div>
-
-
-            <div class="team">
-
-                <img
-                    src="${getLogo(away.team)}"
-                    alt=""
-                    onerror="
-                        this.style.display='none'
-                    "
-                >
-
-                <span class="team-name">
-                    ${away.team.displayName}
-                </span>
-
-            </div>
-
-        </div>
-
-    </article>
-
-    `;
-
-}
-
-
-/* ==========================================
-   FILTROS DE LIGAS
-========================================== */
-
-function renderLeagueFilters(){
-
-    const container =
-        document.getElementById(
-            "leagueFilters"
-        );
-
-    let html = `
-
-        <button
-            class="filter ${
-                currentLeague==="all"
-                ? "active"
-                : ""
-            }"
-            onclick="selectLeague('all')"
-        >
-            Todas
-        </button>
-
-    `;
-
-
-    Object.entries(LEAGUES)
-    .forEach(([key,league])=>{
-
-        html += `
-
-            <button
-                class="filter ${
-                    currentLeague===key
-                    ? "active"
-                    : ""
-                }"
-                onclick="
-                    selectLeague('${key}')
-                "
-            >
-                ${league.name}
-            </button>
-
-        `;
-
-    });
-
-
-    container.innerHTML =
-        html;
-
-}
-
-
-function selectLeague(key){
-
-    currentLeague =
-        key;
-
-    renderLeagueFilters();
-
-    renderMatches();
-
-}
-
-
-/* ==========================================
-   RENDER PARTIDOS
-========================================== */
-
-function renderMatches(){
-
-    const container =
-        document.getElementById(
-            "matchesList"
-        );
-
-    let events =
-        [...matchesCache];
-
-
-    if(currentLeague !== "all"){
-
-        events =
-            events.filter(
-                event =>
-                    event.leagueKey ===
-                    currentLeague
-            );
-
-    }
-
-
-    if(!events.length){
-
-        container.innerHTML = `
-
-            <div class="error">
-
-                No hay partidos disponibles
-                en este periodo para esta competición.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    /*
-       Primero los partidos en directo,
-       después los próximos y después
-       los ya terminados.
-    */
-
-    const now =
-        Date.now();
-
-    events.sort((a,b)=>{
-
-        const aStatus =
-            getStatus(a);
-
-        const bStatus =
-            getStatus(b);
-
-        if(
-            aStatus.className === "live" &&
-            bStatus.className !== "live"
-        ){
-            return -1;
-        }
-
-        if(
-            bStatus.className === "live" &&
-            aStatus.className !== "live"
-        ){
-            return 1;
-        }
-
-        const aFuture =
-            new Date(a.date).getTime() > now;
-
-        const bFuture =
-            new Date(b.date).getTime() > now;
-
-        if(aFuture && !bFuture){
-            return -1;
-        }
-
-        if(bFuture && !aFuture){
-            return 1;
-        }
-
-        return (
-            new Date(a.date) -
-            new Date(b.date)
-        );
-
-    });
-
-
-    container.innerHTML =
-        events
-        .map(createMatchCard)
-        .join("");
-
-}
-
-
-/* ==========================================
-   INICIO
-========================================== */
-
-function renderHomeMatches(){
-
-    const container =
-        document.getElementById(
-            "homeMatches"
-        );
-
-    /*
-       En inicio enseñamos una selección
-       de partidos recientes/próximos.
-    */
-
-    const events =
-        [...matchesCache]
-        .sort((a,b)=>{
-
-            const aStatus =
-                getStatus(a);
-
-            const bStatus =
-                getStatus(b);
-
-            if(
-                aStatus.className==="live" &&
-                bStatus.className!=="live"
-            ){
-                return -1;
-            }
-
-            if(
-                bStatus.className==="live" &&
-                aStatus.className!=="live"
-            ){
-                return 1;
-            }
-
-            return (
-                Math.abs(
-                    new Date(a.date)-Date.now()
-                ) -
-                Math.abs(
-                    new Date(b.date)-Date.now()
-                )
-            );
-
-        })
-        .slice(0,6);
-
-
-    if(!events.length){
-
-        container.innerHTML =
-            `<div class="loading">
-                No hay partidos disponibles.
-            </div>`;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        events
-        .map(createMatchCard)
-        .join("");
-
-}
-
-
-/* ==========================================
-   DETALLE DE PARTIDO
-========================================== */
-
-async function openMatch(
-    eventId,
-    leagueSlug
-){
-
-    showView("matchDetail");
-
-    const container =
-        document.getElementById(
-            "matchDetailContent"
-        );
-
-    container.innerHTML =
-        `<div class="loading">
-            Cargando partido...
-        </div>`;
-
-
-    try{
-
-        const data =
-            await getJSON(
-                API +
-                leagueSlug +
-                "/summary?event=" +
-                eventId
-            );
-
-        renderMatchDetail(data);
-
-    }catch(error){
-
-        console.error(error);
-
-        container.innerHTML = `
-
-            <div class="error">
-
-                No se ha podido cargar
-                la información del partido.
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* ==========================================
-   DETALLE
-========================================== */
-
-function renderMatchDetail(data){
-
-    const header =
-        data.header;
-
-    if(!header){
-
-        document.getElementById(
-            "matchDetailContent"
-        ).innerHTML =
-            `<div class="error">
-                Información no disponible.
-            </div>`;
-
-        return;
-
-    }
-
-
-    const competition =
-        header.competitions?.[0];
-
-    if(!competition){
-
-        document.getElementById(
-            "matchDetailContent"
-        ).innerHTML =
-            `<div class="error">
-                Información no disponible.
-            </div>`;
-
-        return;
-
-    }
-
-
-    const competitors =
-        competition.competitors || [];
-
-    const home =
-        competitors.find(
-            c=>c.homeAway==="home"
-        );
-
-    const away =
-        competitors.find(
-            c=>c.homeAway==="away"
-        );
-
-    const status =
-        competition.status;
-
-    const statusText =
-        status?.type?.shortDetail ||
-        status?.type?.detail ||
-        "Programado";
-
-    const isLive =
-        status?.type?.state==="in";
-
-
-    let html = `
-
-        <div class="match-detail-header">
-
-            <div class="detail-competition">
-
-                ${header.season?.name || ""}
-
-            </div>
-
-            <div
-                class="detail-status"
-                style="${
-                    isLive
-                    ? ""
-                    : "color:#9ca3aa;"
-                }"
-            >
-
-                ${statusText}
-
-            </div>
-
-
-            <div class="detail-teams">
-
-                <div class="detail-team">
-
-                    <img
-                        src="${getLogo(home?.team)}"
-                        alt=""
-                        onerror="
-                            this.style.display='none'
-                        "
-                    >
-
-                    <div class="detail-team-name">
-
-                        ${home?.team?.displayName || ""}
-
+                    <div class="team-name">
+                        ${homeTeam.displayName || homeTeam.name || ""}
                     </div>
 
                 </div>
-
 
                 <div>
 
-                    <div class="detail-score">
+                    <div class="score">
 
-                        ${home?.score ?? "-"}
-                        -
-                        ${away?.score ?? "-"}
-
-                    </div>
-
-                    <div class="detail-time">
-
-                        ${formatDate(header.date)}
+                        ${
+                            home.score != null &&
+                            away.score != null
+                            ? `${home.score} - ${away.score}`
+                            : "VS"
+                        }
 
                     </div>
 
                 </div>
 
+                <div class="team">
 
-                <div class="detail-team">
+                    ${logoHTML(awayTeam)}
 
-                    <img
-                        src="${getLogo(away?.team)}"
-                        alt=""
-                        onerror="
-                            this.style.display='none'
-                        "
-                    >
-
-                    <div class="detail-team-name">
-
-                        ${away?.team?.displayName || ""}
-
+                    <div class="team-name">
+                        ${awayTeam.displayName || awayTeam.name || ""}
                     </div>
 
                 </div>
 
             </div>
 
-        </div>
-
-    `;
-
-
-    html +=
-        renderStatistics(data);
-
-    html +=
-        renderLineups(data);
-
-    html +=
-        renderScoringPlays(data);
-
-
-    document.getElementById(
-        "matchDetailContent"
-    ).innerHTML =
-        html;
-
-}
-
-
-/* ==========================================
-   ESTADÍSTICAS
-========================================== */
-
-function renderStatistics(data){
-
-    const teams =
-        data.boxscore?.teams;
-
-    if(
-        !teams ||
-        teams.length < 2
-    ){
-        return "";
-    }
-
-
-    const home =
-        teams.find(
-            t=>t.homeAway==="home"
-        ) || teams[0];
-
-    const away =
-        teams.find(
-            t=>t.homeAway==="away"
-        ) || teams[1];
-
-
-    const homeStats =
-        normalizeStats(
-            home.statistics || []
-        );
-
-    const awayStats =
-        normalizeStats(
-            away.statistics || []
-        );
-
-
-    const stats = [
-
-        ["Posesión","possession"],
-
-        ["Tiros","totalShots"],
-
-        ["Tiros a puerta","shotsOnTarget"],
-
-        ["Faltas","fouls"],
-
-        ["Córners","corners"],
-
-        ["Fuera de juego","offsides"]
-
-    ];
-
-
-    const rows =
-        stats.map(
-            ([label,key])=>{
-
-                const h =
-                    parseStat(
-                        homeStats[key]
-                    );
-
-                const a =
-                    parseStat(
-                        awayStats[key]
-                    );
-
-                if(
-                    h===null &&
-                    a===null
-                ){
-                    return "";
-                }
-
-
-                const hv =
-                    h ?? 0;
-
-                const av =
-                    a ?? 0;
-
-
-                let homeWidth = 50;
-
-                if(hv+av > 0){
-
-                    homeWidth =
-                        hv /
-                        (hv+av) *
-                        100;
-
-                }
-
-
-                return `
-
-                    <div class="stat-row">
-
-                        <div class="stat-values">
-
-                            <span>${hv}</span>
-
-                            <strong>
-                                ${label}
-                            </strong>
-
-                            <span>${av}</span>
-
-                        </div>
-
-                        <div class="stat-bar">
-
-                            <div
-                                class="stat-home"
-                                style="
-                                    width:${homeWidth}%
-                                "
-                            ></div>
-
-                            <div
-                                class="stat-away"
-                                style="
-                                    width:${
-                                        100-homeWidth
-                                    }%
-                                "
-                            ></div>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join("");
-
-
-    if(!rows){
-        return "";
-    }
-
-
-    return `
-
-        <div
-            class="panel"
-            style="margin-top:14px;"
-        >
-
-            <h3>
-                Estadísticas
-            </h3>
-
-            ${rows}
-
-        </div>
-
-    `;
-
-}
-
-
-function normalizeStats(stats){
-
-    const result = {};
-
-    stats.forEach(stat=>{
-
-        const name =
-            String(
-                stat.name ||
-                stat.label ||
-                ""
-            ).toLowerCase();
-
-        const value =
-            stat.displayValue ??
-            stat.value;
-
-
-        if(
-            name.includes("possession")
-        ){
-            result.possession =
-                value;
-        }
-
-        else if(
-            name.includes("totalshots") ||
-            name.includes("total_shots")
-        ){
-            result.totalShots =
-                value;
-        }
-
-        else if(
-            name.includes("shotsontarget") ||
-            name.includes("shots_on_target")
-        ){
-            result.shotsOnTarget =
-                value;
-        }
-
-        else if(
-            name.includes("fouls")
-        ){
-            result.fouls =
-                value;
-        }
-
-        else if(
-            name.includes("corner")
-        ){
-            result.corners =
-                value;
-        }
-
-        else if(
-            name.includes("offside")
-        ){
-            result.offsides =
-                value;
-        }
-
-    });
-
-    return result;
-
-}
-
-
-function parseStat(value){
-
-    if(
-        value===undefined ||
-        value===null
-    ){
-        return null;
-    }
-
-    const number =
-        parseFloat(
-            String(value)
-            .replace("%","")
-        );
-
-    return isNaN(number)
-        ? null
-        : number;
-
-}
-
-
-/* ==========================================
-   ALINEACIONES
-========================================== */
-
-function renderLineups(data){
-
-    const players =
-        data.boxscore?.players ||
-        data.rosters ||
-        [];
-
-
-    if(
-        !players ||
-        !players.length
-    ){
-
-        return `
-
-            <div
-                class="panel"
-                style="margin-top:14px;"
-            >
-
-                <h3>
-                    Alineaciones
-                </h3>
-
-                <p style="
-                    color:var(--muted);
-                    line-height:1.5;
-                ">
-
-                    Las alineaciones todavía
-                    no están disponibles para
-                    este partido.
-
-                </p>
-
+            <div class="status ${completed ? "finished" : ""}">
+                ${status}
             </div>
 
-        `;
-
-    }
-
-
-    return `
-
-        <div
-            class="panel"
-            style="margin-top:14px;"
-        >
-
-            <h3>
-                Alineaciones
-            </h3>
-
-            <p style="
-                color:var(--muted);
-                line-height:1.5;
-            ">
-
-                Las alineaciones oficiales
-                se muestran cuando ESPN
-                proporciona los datos del partido.
-
-            </p>
-
         </div>
 
     `;
-
 }
 
 
-/* ==========================================
-   ACCIONES
-========================================== */
-
-function renderScoringPlays(data){
-
-    const plays =
-        data.scoringPlays;
-
-
-    if(
-        !plays ||
-        !plays.length
-    ){
-        return "";
-    }
-
-
-    let rows = "";
-
-
-    plays.forEach(play=>{
-
-        const text =
-            play.text ||
-            play.shortText ||
-            "";
-
-        const clock =
-            play.clock?.displayValue ||
-            "";
-
-
-        rows += `
-
-            <div style="
-                padding:12px 0;
-                border-bottom:1px solid var(--border);
-                display:flex;
-                justify-content:space-between;
-                gap:20px;
-            ">
-
-                <strong>
-                    ${clock}
-                </strong>
-
-                <span>
-                    ${text}
-                </span>
-
-            </div>
-
-        `;
-
-    });
-
-
-    return `
-
-        <div
-            class="panel"
-            style="margin-top:14px;"
-        >
-
-            <h3>
-                Acciones destacadas
-            </h3>
-
-            ${rows}
-
-        </div>
-
-    `;
-
-}
-
-
-/* ==========================================
-   CLASIFICACIONES
-========================================== */
-
-function renderStandingFilters(){
+async function loadMatches(league) {
 
     const container =
-        document.getElementById(
-            "standingFilters"
-        );
-
+        document.getElementById("matchesList");
 
     container.innerHTML =
-        Object.entries(LEAGUES)
-        .map(
-            ([key,league])=>`
+        `<div class="loading">Cargando partidos...</div>`;
 
-                <button
-                    class="filter ${
-                        currentStandingsLeague===key
-                        ? "active"
-                        : ""
-                    }"
-                    onclick="
-                        selectStandings('${key}')
-                    "
-                >
-                    ${league.name}
-                </button>
-
-            `
-        )
-        .join("");
-
-}
-
-
-function selectStandings(key){
-
-    currentStandingsLeague =
-        key;
-
-    renderStandingFilters();
-
-    loadStandings(key);
-
-}
-
-
-async function loadStandings(key){
-
-    renderStandingFilters();
-
-
-    const container =
-        document.getElementById(
-            "standingsContent"
-        );
-
-
-    container.innerHTML =
-        `<div class="loading">
-            Cargando clasificación...
-        </div>`;
-
-
-    try{
-
-        const league =
-            LEAGUES[key];
-
+    try {
 
         const data =
-            await getJSON(
-                STANDINGS_API +
-                league.slug +
-                "/standings"
+            await getMatches(league);
+
+        let events =
+            data.events || [];
+
+        events.sort((a, b) => {
+
+            if (isLive(a) && !isLive(b)) return -1;
+            if (!isLive(a) && isLive(b)) return 1;
+
+            if (!isCompleted(a) && isCompleted(b)) return -1;
+            if (isCompleted(a) && !isCompleted(b)) return 1;
+
+            return new Date(a.date) - new Date(b.date);
+
+        });
+
+        if (events.length === 0) {
+
+            container.innerHTML =
+                `<div class="loading">
+                    No hay partidos disponibles.
+                </div>`;
+
+            return;
+        }
+
+        container.innerHTML =
+            events.map(renderMatch).join("");
+
+    } catch (error) {
+
+        container.innerHTML =
+            `<div class="error">
+                No se han podido cargar los partidos.
+            </div>`;
+
+    }
+}
+
+
+function selectLeague(league, button) {
+
+    currentLeague = league;
+
+    document
+        .querySelectorAll("#matches .league-button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    loadMatches(league);
+}
+
+
+/* =========================
+   DETALLE DEL PARTIDO
+========================= */
+
+async function openMatch(id, league) {
+
+    hideAll();
+
+    document
+        .getElementById("matchDetail")
+        .classList.remove("hidden");
+
+    const container =
+        document.getElementById("detailContent");
+
+    container.innerHTML =
+        `<div class="loading">Cargando información del partido...</div>`;
+
+    try {
+
+        const response =
+            await fetch(
+                `${API}${league}/summary?event=${id}`
             );
 
+        if (!response.ok) {
+            throw new Error();
+        }
 
-        renderStandings(data);
+        const data =
+            await response.json();
 
+        const competition =
+            data.header?.competitions?.[0];
 
-    }catch(error){
+        const competitors =
+            competition?.competitors || [];
 
-        console.error(error);
+        const home =
+            competitors.find(c => c.homeAway === "home");
 
+        const away =
+            competitors.find(c => c.homeAway === "away");
+
+        const homeTeam =
+            home?.team || {};
+
+        const awayTeam =
+            away?.team || {};
+
+        const status =
+            competition?.status?.type;
 
         container.innerHTML = `
 
-            <div class="error">
+            <div class="detail">
 
-                No se ha podido cargar
-                la clasificación.
+                <div class="competition">
+                    ${leagues[league] || "Fútbol"}
+                </div>
+
+                <div class="detail-teams">
+
+                    <div class="detail-team">
+
+                        ${logoHTML(homeTeam)}
+
+                        <h2>
+                            ${homeTeam.displayName || ""}
+                        </h2>
+
+                    </div>
+
+                    <div>
+
+                        <div class="detail-score">
+                            ${home?.score ?? "-"}
+                            -
+                            ${away?.score ?? "-"}
+                        </div>
+
+                        <div class="status">
+                            ${
+                                status?.detail ||
+                                status?.shortDetail ||
+                                ""
+                            }
+                        </div>
+
+                    </div>
+
+                    <div class="detail-team">
+
+                        ${logoHTML(awayTeam)}
+
+                        <h2>
+                            ${awayTeam.displayName || ""}
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <div class="info-grid">
+
+                    <div class="info-box">
+                        <small>Estado</small>
+                        ${
+                            status?.completed
+                            ? "Finalizado"
+                            : status?.state === "in"
+                            ? "En directo"
+                            : "Próximo"
+                        }
+                    </div>
+
+                    <div class="info-box">
+                        <small>Fecha</small>
+                        ${matchTime({
+                            date:
+                            competition?.date ||
+                            data.header?.competitions?.[0]?.date ||
+                            new Date()
+                        })}
+                    </div>
+
+                    <div class="info-box">
+                        <small>Estadio</small>
+                        ${
+                            competition?.venue?.fullName ||
+                            "Información no disponible"
+                        }
+                    </div>
+
+                </div>
 
             </div>
 
         `;
 
-    }
+    } catch {
 
+        container.innerHTML =
+            `<div class="error">
+                No se ha podido cargar el detalle del partido.
+            </div>`;
+
+    }
 }
 
 
-/* ==========================================
-   TABLA CON ESCUDOS
-========================================== */
+/* =========================
+   CLASIFICACIONES
+========================= */
 
-function renderStandings(data){
+async function loadStandings(league) {
 
-    const container =
-        document.getElementById(
-            "standingsContent"
-        );
+    const body =
+        document.getElementById("standingsBody");
 
+    body.innerHTML = `
+        <tr>
+            <td colspan="10" class="loading">
+                Cargando clasificación...
+            </td>
+        </tr>
+    `;
 
-    let entries = [];
+    try {
 
+        /*
+         * Cargamos clasificación y equipos por separado.
+         * Así tenemos otra fuente para conseguir los escudos.
+         */
 
-    if(data.children){
+        const standingsURL =
+            `https://site.api.espn.com/apis/v2/sports/soccer/${league}/standings`;
 
-        data.children.forEach(group=>{
+        const teamsURL =
+            `${API}${league}/teams`;
 
-            if(
-                group.standings &&
-                group.standings.entries
-            ){
+        const [standingsResponse, teamsResponse] =
+            await Promise.all([
+                fetch(standingsURL),
+                fetch(teamsURL)
+            ]);
 
-                entries.push(
-                    ...group.standings.entries
-                );
+        if (!standingsResponse.ok) {
+            throw new Error();
+        }
 
+        const standingsData =
+            await standingsResponse.json();
+
+        let teamsData = {};
+
+        if (teamsResponse.ok) {
+            teamsData =
+                await teamsResponse.json();
+        }
+
+        /*
+         * Creamos un mapa:
+         * ID DEL EQUIPO -> DATOS DEL EQUIPO
+         */
+
+        const teamMap = {};
+
+        const teamEntries =
+            teamsData.sports?.[0]
+                ?.leagues?.[0]
+                ?.teams || [];
+
+        teamEntries.forEach(item => {
+
+            const team =
+                item.team || item;
+
+            if (team.id) {
+                teamMap[team.id] = team;
             }
 
         });
 
-    }
 
+        /*
+         * ESPN puede devolver distintos formatos
+         * dependiendo de la competición.
+         */
 
-    if(
-        !entries.length &&
-        data.standings?.entries
-    ){
+        let entries = [];
 
-        entries =
-            data.standings.entries;
+        if (
+            standingsData.children &&
+            standingsData.children[0]
+        ) {
 
-    }
+            standingsData.children.forEach(child => {
 
+                if (child.standings?.entries) {
 
-    if(!entries.length){
+                    entries.push(
+                        ...child.standings.entries
+                    );
 
-        container.innerHTML = `
-
-            <div class="error">
-
-                No hay datos de clasificación
-                disponibles.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    let rows = "";
-
-
-    entries.forEach(
-        (entry,index)=>{
-
-            const team =
-                entry.team || {};
-
-
-            const logo =
-                team.logo ||
-                team.logos?.[0]?.href ||
-                entry.team?.logos?.[0]?.href ||
-                "";
-
-
-            const stats = {};
-
-
-            (
-                entry.stats || []
-            ).forEach(stat=>{
-
-                stats[stat.name] =
-                    stat.displayValue ??
-                    stat.value;
+                }
 
             });
 
+        }
 
-            rows += `
+        if (
+            entries.length === 0 &&
+            standingsData.standings?.entries
+        ) {
 
-                <tr>
-
-                    <td>
-                        ${index+1}
-                    </td>
-
-
-                    <td>
-
-                        <div class="club-cell">
-
-                            <img
-                                src="${logo}"
-                                alt=""
-                                onerror="
-                                    this.style.display='none'
-                                "
-                            >
-
-                            <span>
-                                ${
-                                    team.displayName ||
-                                    team.name ||
-                                    team.shortDisplayName ||
-                                    ""
-                                }
-                            </span>
-
-                        </div>
-
-                    </td>
-
-
-                    <td>
-                        ${
-                            stats.gamesPlayed ??
-                            stats.played ??
-                            "-"
-                        }
-                    </td>
-
-
-                    <td>
-                        ${stats.wins ?? "-"}
-                    </td>
-
-
-                    <td>
-                        ${
-                            stats.ties ??
-                            stats.draws ??
-                            "-"
-                        }
-                    </td>
-
-
-                    <td>
-                        ${stats.losses ?? "-"}
-                    </td>
-
-
-                    <td>
-                        <strong>
-                            ${stats.points ?? "-"}
-                        </strong>
-                    </td>
-
-                </tr>
-
-            `;
+            entries =
+                standingsData.standings.entries;
 
         }
-    );
 
 
-    container.innerHTML = `
+        if (entries.length === 0) {
 
-        <div class="table-wrap">
+            body.innerHTML = `
+                <tr>
+                    <td colspan="10" class="error">
+                        No hay clasificación disponible.
+                    </td>
+                </tr>
+            `;
 
-            <table>
+            return;
+        }
 
-                <thead>
+
+        body.innerHTML =
+            entries.map((entry, index) => {
+
+                const team =
+                    entry.team || {};
+
+                /*
+                 * Primero buscamos el equipo en /teams.
+                 * Después usamos el que viene en standings.
+                 */
+
+                const completeTeam =
+                    teamMap[team.id] || team;
+
+                const stats =
+                    {};
+
+                (entry.stats || []).forEach(stat => {
+
+                    stats[stat.name] =
+                        stat.value;
+
+                    stats[stat.shortDisplayName] =
+                        stat.value;
+
+                    stats[stat.displayName] =
+                        stat.value;
+
+                });
+
+
+                const played =
+                    stats.gamesPlayed ??
+                    stats.gp ??
+                    "-";
+
+                const wins =
+                    stats.wins ??
+                    stats.w ??
+                    "-";
+
+                const draws =
+                    stats.ties ??
+                    stats.draws ??
+                    stats.d ??
+                    "-";
+
+                const losses =
+                    stats.losses ??
+                    stats.l ??
+                    "-";
+
+                const goalsFor =
+                    stats.pointsFor ??
+                    stats.goalsFor ??
+                    stats.gf ??
+                    "-";
+
+                const goalsAgainst =
+                    stats.pointsAgainst ??
+                    stats.goalsAgainst ??
+                    stats.ga ??
+                    "-";
+
+                const points =
+                    stats.points ??
+                    "-";
+
+                const goalDiff =
+                    stats.pointDifferential ??
+                    stats.goalDifference ??
+                    stats.gd ??
+                    "-";
+
+
+                return `
 
                     <tr>
 
-                        <th>
-                            #
-                        </th>
+                        <td class="position">
+                            ${index + 1}
+                        </td>
 
-                        <th>
-                            Equipo
-                        </th>
+                        <td>
 
-                        <th>
-                            PJ
-                        </th>
+                            <div class="club">
 
-                        <th>
-                            G
-                        </th>
+                                ${logoHTML(completeTeam)}
 
-                        <th>
-                            E
-                        </th>
+                                <span>
+                                    ${
+                                        completeTeam.displayName ||
+                                        completeTeam.name ||
+                                        "Equipo"
+                                    }
+                                </span>
 
-                        <th>
-                            P
-                        </th>
+                            </div>
 
-                        <th>
-                            Pts
-                        </th>
+                        </td>
+
+                        <td>${played}</td>
+
+                        <td>${wins}</td>
+
+                        <td>${draws}</td>
+
+                        <td>${losses}</td>
+
+                        <td>${goalsFor}</td>
+
+                        <td>${goalsAgainst}</td>
+
+                        <td>${goalDiff}</td>
+
+                        <td>
+                            <strong>${points}</strong>
+                        </td>
 
                     </tr>
 
-                </thead>
+                `;
 
+            }).join("");
 
-                <tbody>
+    } catch (error) {
 
-                    ${rows}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-
-}
-
-
-/* ==========================================
-   NOTICIAS
-========================================== */
-
-function renderNewsFilters(){
-
-    const container =
-        document.getElementById(
-            "newsFilters"
-        );
-
-
-    container.innerHTML =
-        Object.entries(LEAGUES)
-        .map(
-            ([key,league])=>`
-
-                <button
-                    class="filter ${
-                        currentNewsLeague===key
-                        ? "active"
-                        : ""
-                    }"
-                    onclick="
-                        selectNews('${key}')
-                    "
-                >
-
-                    ${league.name}
-
-                </button>
-
-            `
-        )
-        .join("");
-
-}
-
-
-function selectNews(key){
-
-    currentNewsLeague =
-        key;
-
-    renderNewsFilters();
-
-    loadNews(key);
-
-}
-
-
-async function loadNews(key){
-
-    renderNewsFilters();
-
-
-    const container =
-        document.getElementById(
-            "newsContent"
-        );
-
-
-    container.innerHTML =
-        `<div class="loading">
-            Cargando noticias...
-        </div>`;
-
-
-    try{
-
-        const league =
-            LEAGUES[key];
-
-
-        const data =
-            await getJSON(
-                API +
-                league.slug +
-                "/news"
-            );
-
-
-        renderNews(data);
-
-
-    }catch(error){
-
-        console.error(error);
-
-
-        container.innerHTML = `
-
-            <div class="error">
-
-                No se han podido cargar
-                las noticias.
-
-            </div>
-
+        body.innerHTML = `
+            <tr>
+                <td colspan="10" class="error">
+                    No se ha podido cargar la clasificación.
+                </td>
+            </tr>
         `;
 
     }
-
 }
 
 
-/* ==========================================
-   NOTICIAS
-========================================== */
+function selectStandings(league, button) {
 
-function renderNews(data){
+    currentLeague = league;
+
+    document
+        .querySelectorAll("#standings .league-button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    loadStandings(league);
+}
+
+
+/* =========================
+   NOTICIAS
+========================= */
+
+async function loadNews() {
 
     const container =
-        document.getElementById(
-            "newsContent"
-        );
-
-
-    const articles =
-        data.articles || [];
-
-
-    if(!articles.length){
-
-        container.innerHTML =
-            `<div class="error">
-                No hay noticias disponibles.
-            </div>`;
-
-        return;
-
-    }
-
+        document.getElementById("newsList");
 
     container.innerHTML =
-        articles
-        .slice(0,12)
-        .map(article=>{
+        `<div class="loading">Cargando noticias...</div>`;
 
-            const image =
-                article.images?.[0]?.url ||
-                "";
+    try {
 
-            const link =
-                article.links?.web?.href ||
-                "#";
+        const response =
+            await fetch(
+                `${API}${currentLeague}/news`
+            );
 
+        if (!response.ok) {
+            throw new Error();
+        }
 
-            return `
+        const data =
+            await response.json();
 
-                <a
-                    class="card news-card"
-                    href="${link}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
+        const articles =
+            data.articles || [];
 
-                    ${
-                        image
+        if (articles.length === 0) {
 
-                        ?
+            container.innerHTML =
+                `<div class="loading">
+                    No hay noticias disponibles.
+                </div>`;
 
-                        `<img
-                            class="news-image"
-                            src="${image}"
-                            alt=""
-                        >`
+            return;
+        }
 
-                        :
+        container.innerHTML =
+            articles.slice(0, 12).map(article => {
 
-                        `<div
-                            class="news-image"
-                        ></div>`
-                    }
+                return `
 
+                    <article class="card news-card">
 
-                    <div class="news-content">
+                        <div class="competition">
+                            ${leagues[currentLeague] || "Fútbol"}
+                        </div>
 
                         <h3>
-                            ${
-                                article.headline ||
-                                ""
-                            }
+                            ${article.headline || "Noticia"}
                         </h3>
-
 
                         <p>
                             ${
                                 article.description ||
-                                ""
+                                "Consulta la información completa."
                             }
                         </p>
 
+                    </article>
 
-                        <div class="news-date">
+                `;
 
-                            ${
-                                article.published
-                                ? formatDate(
-                                    article.published
-                                  )
-                                : ""
-                            }
+            }).join("");
 
-                        </div>
+    } catch {
 
-                    </div>
+        container.innerHTML =
+            `<div class="error">
+                No se han podido cargar las noticias.
+            </div>`;
 
-                </a>
-
-            `;
-
-        })
-        .join("");
-
+    }
 }
 
 
-/* ==========================================
-   ARRANQUE
-========================================== */
+/* =========================
+   INICIO
+========================= */
 
-loadMatches();
+async function loadHomeMatches() {
+
+    const container =
+        document.getElementById("homeMatches");
+
+    try {
+
+        const data =
+            await getMatches("esp.1");
+
+        const events =
+            (data.events || [])
+                .sort((a, b) => {
+
+                    if (isLive(a) && !isLive(b)) return -1;
+                    if (!isLive(a) && isLive(b)) return 1;
+
+                    return new Date(a.date) -
+                           new Date(b.date);
+
+                })
+                .slice(0, 6);
+
+        if (events.length === 0) {
+
+            container.innerHTML =
+                `<div class="loading">
+                    No hay partidos disponibles.
+                </div>`;
+
+            return;
+        }
+
+        container.innerHTML =
+            events.map(event => {
+
+                const oldLeague =
+                    currentLeague;
+
+                currentLeague = "esp.1";
+
+                const html =
+                    renderMatch(event);
+
+                currentLeague =
+                    oldLeague;
+
+                return html;
+
+            }).join("");
+
+    } catch {
+
+        container.innerHTML =
+            `<div class="error">
+                No se han podido cargar los partidos.
+            </div>`;
+
+    }
+}
 
 
-/* ==========================================
-   ACTUALIZACIÓN
-========================================== */
+/* Cargar la página */
 
-setInterval(()=>{
-
-    loadMatches();
-
-},60000);
+loadHomeMatches();
 
 </script>
 
